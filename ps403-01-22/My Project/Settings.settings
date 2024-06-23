@@ -1,0 +1,60 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="Database1ConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True;Connect Timeout=30&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True;Connect Timeout=30</Value>
+    </Setting>
+    <Setting Name="LanguageEnFa" Type="System.String" Scope="User">
+      <Value Profile="(Default)">idPer=آی دی پرسنل
+tarikh=مورخه
+TimeEnd=زمان پایان
+TimeLen=طول زمان
+TimeStart=زمان شروع
+ID=آیدی
+idArea=آیدی ناحیه
+idPerSarparast
+idPerZirGroh
+idWork
+address=آدرس
+code=کد
+famil=فامیل
+fName=نام
+remark=توضیحات
+sel=
+semat=سمت
+tel=تلفن
+SettingBy=تنظیم کننده
+WorkType=نوع فعالیت
+Area=ناحیه
+Sarparast=سرپرست
+ZirGroh=زیرگروه</Value>
+    </Setting>
+    <Setting Name="Setting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">
+ID
+idPer
+tarikh
+TimeEnd
+TimeLen
+TimeStart
+idArea
+idPerSarparast
+idPerZirGroh
+idWork
+address
+code
+famil
+fName
+remark
+sel
+semat
+tel</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

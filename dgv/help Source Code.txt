@@ -1,0 +1,619 @@
+﻿#Region "کد های کمکی"
+'مولتی قیلتر
+'dtMain.DefaultView.RowFilter = String.Format("[f10]  Like '%CABLE%' AND [f10]  Like '%TION%'") 
+Project Solution 64x  DGV Any CPU
+'___________________________________اکسل رویداد
+'Imports Excel = Microsoft.Office.Interop.Excel
+'Private xlApp As Excel.Application
+'Private xlBook As Excel.Workbook
+'Private xlSheet1 As Excel.Worksheet
+''Private xlSheet2 As Excel.Worksheet
+''Private xlSheet3 As Excel.Worksheet
+'Private EventDel_BeforeBookClose As Excel.AppEvents_WorkbookBeforeCloseEventHandler
+'Private EventDel_CellsChange As Excel.DocEvents_ChangeEventHandler
+'Private EventDel_SelectionChangee As Excel.DocEvents_SelectionChangeEventHandler
+'Start Excel and then create a new workbook.
+'xlApp = CreateObject("Excel.Application")
+'xlBook = xlApp.Workbooks.Add()
+'xlBook.Windows(1).Caption = "Uses WithEvents"
+
+''Get references to the three worksheets.
+'xlSheet1 = xlBook.Worksheets.Item(1)
+''  xlSheet2 = xlBook.Worksheets.Item(2)
+'' xlSheet3 = xlBook.Worksheets.Item(3)
+'CType(xlSheet1, Excel._Worksheet).Activate()
+
+''Add an event handler for the WorkbookBeforeClose event of the
+''Application object.
+'EventDel_BeforeBookClose = New Excel.AppEvents_WorkbookBeforeCloseEventHandler(
+'                  AddressOf BeforeBookClose)
+'AddHandler() xlApp.WorkbookBeforeClose, EventDel_BeforeBookClose
+
+'            'Add an event handler for the Change event of both Worksheet 
+'            'objects.
+'            EventDel_CellsChange = New Excel.DocEvents_ChangeEventHandler(
+'                  AddressOf CellsChange)
+'AddHandler() xlSheet1.Change, EventDel_CellsChange
+'            'AddHandler xlSheet1.Change, EventDel_CellsChange
+'            EventDel_SelectionChangee = New Excel.DocEvents_SelectionChangeEventHandler(
+'                  AddressOf SelectionChangee)
+'AddHandler() xlSheet1.SelectionChange, EventDel_SelectionChangee
+'            'AddHandler xlSheet1.SelectionChange, EventDel_SelectionChangee
+'            ' AddHandler xlSheet2.Change, EventDel_CellsChange
+'            'AddHandler xlSheet3.Change, EventDel_CellsChange
+
+'            'Make Excel visible and give the user control.
+'            xlApp.Visible = True
+'xlApp.UserControl = True
+'Private Sub SelectionChangee(ByVal Target As Excel.Range)
+'    'This is called when a cell or cells on a worksheet are changed.
+'    'Debug.WriteLine("Delegate: You Changed Cells " + Target.Address + " on " +
+'    '                  Target.Worksheet.Name())
+'    'Me.Text = Target.Text
+'    'Dim str1 As String = Target.Text
+'    '  If str1 <> "" Then Clipboard.SetText(str1)
+'    ' TextBox1.Invoke(New Action(), {TextBox.Text, str1})
+'    ' TextBox1.AppendText(str1)
+'    ' Dim ff As Integer = FreeFile()
+'    'FileOpen(ff, "c:\aa.txt", OpenMode.Output)
+'    'FilePut(ff, "fdsaf")
+'    'FileClose()
+'    Dim d As New SafeCallDelegate(AddressOf SetText)
+'    Dim idxRow As Integer = Target.Row
+'    Dim str3 As String = xlSheet1.Application.ActiveSheet.Rows(Target.Row).Cells(1).Value2
+'    '  TextBox1.Invoke(d, New Object() {CStr(Target.Rows.Range(idxRow, 2).Value2)})
+'    TextBox1.Invoke(d, New Object() {CStr(str3)})
+'End Sub
+
+'Private Sub SetText(inText As Object)
+'    WriteTextSafe(inText)
+'End Sub
+'   IO.File.SetLastWriteTime(_DatabasePathFile & "\" & Path_File_mdb, New Date(1998, 4, 3)) ست کردن مودی فای فایل 
+'_______________________________________
+'Dim doc As New Aspose.Pdf.Document("c:\pdf.pdf") ' Aspose.Pdf.Document("c:\pdf.pdf")
+'Dim docInfo As New Aspose.Pdf.DocumentInfo(doc)
+'docInfo.Author = "fdfd"
+'docInfo.Subject = "hkjkjkj"
+'docInfo.Title = "mammamamama"
+'doc.Save("c:\pdf.pdf")
+'____________________________________________
+
+'  Dim bit1 As Boolean = "14dBA03oA15" Like "##[d,l,W][A-z][A-z]##[A-z][A-z]##"
+'[!A,B,c]  ایجاد لیست و نباشد این لیست
+'___________________________________________________
+'Dim vv As New Dictionary(Of String, Integer)()'مقدار دهی متغیرها از بیرون برنامه
+'vv("zzz") = 10
+'____________________________________________________
+'requireAdministrator برای به صورت ادمین لود شدن
+'Imports System.Text.RegularExpressions
+'Dim s As String = "122-250152-8"
+'If Regex.IsMatch(s, "[1-9]{3}-[0-9]{6}-[0-9]") = True The
+'_______________________________________________________________________faghat meghdar Adadi
+'Private Sub T7_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles ،TextBox1.KeyPress
+'        If Not IsNumeric(e.KeyChar) And e.KeyChar <> Convert.ToChar(Keys.Back) And e.KeyChar <> Convert.ToChar(Keys.Delete) Then
+'        e.Handled = True
+'    End If
+'End Sub
+'shell (explorer.exe  "d:\d","book","/select")'باز شدن به همراه نتخاب
+'___________________________________________________________________________________
+'AcroRd32.exe  "/a"  "zoom=50&navpanes=1=OpenActions&search=10LCA" " "c:\pdf.pdf"
+'AcroRd32.exe  "/a" "page=2&zoom=600,1010,555" "c:\pdf.pdf"
+'AcroRd32.exe  "/a" "page=2" "c:\pdf.pdf" باز کردن صفحه مورد نظر pdf
+'Command   	Result
+'nameddest = destination 	open And jump To a position In the file where that named destination Is defined.
+'page = pagenum	Turn To the target page.
+'zoom = scale	Zoom the PDFs.
+'pagemode = bookmarks	Open the bookmark panel In the Navigation Pane.
+'pagemode = thumbs	Open the thumbnail panel In the Navigation Pane.
+'pagemode = layers	Open the layers panel In the Navigation Pane.
+'pagemode = none(default)	Close all the panels In the Navigation pane.
+'fdf = "fdf path"	Open the FDF file.
+'toolbar = 1|0	Show Or Hide Tool Bar.
+'statusbar = 1|0	Show Or Hide Status Bar.
+'navpanes = 1|0	Show Or Hide Navigation Pane.
+'reverse = 1|0	view pages In reverse Or forward order
+'________________________________________________________________________
+#End Region
+
+'''Dim dt As New DataTable
+'''dt.Columns.Add("1", GetType(Boolean))
+'''''  dt.Columns.Add(dtMain.Copy.DefaultView.ToTable(True, dtMain.Columns(e.ColumnIndex).ColumnName))
+''''Dim row() As DataRow
+''''row = dtMain.DefaultView.ToTable(True, dtMain.Columns(e.ColumnIndex).ColumnName).Copy.Select
+'''Dim ccol As New DataColumn("1", GetType(Boolean))
+'''ccol.DefaultValue = True
+'''dt = dtMain.DefaultView.ToTable(True, dtMain.Columns(e.ColumnIndex).ColumnName).Copy
+
+
+'''' dt.Columns.Add(ccol)
+'''Dim dr As DataRow = dt.NewRow
+'''dr.Table.Columns(0).DataType = GetType(String)
+'''dr.Item(0) = "(Blank)"
+'''dt.Rows.InsertAt(dr, 0)
+
+'''' dt.Columns.Add("1", GetType(Boolean))
+'''''   colTags(e.ColumnIndex).dtNotTekrar = dtMain.Copy.DefaultView.ToTable(True, dtMain.Columns(e.ColumnIndex).ColumnName)
+''''dt.Columns.Add(dtMain.Columns(e.ColumnIndex).ColumnName)
+''''' dt.Rows.Add(True, "(Select All)")
+''''dt.Rows.Add(True, "(Blanks)")
+
+'''''   row = colTags(e.ColumnIndex).dtNotTekrar.Select()
+''''For a = 0 To row.Count - 1
+''''    'chkLstFilter.Items.Add(tagColumn.dtNotTekrar.Rows(a).Item(0))
+''''    dt.Rows.Add(True, row(a).Item(0).ToString)
+
+''''Next
+'''TagColumns(e.ColumnIndex).dtNotTekrar = dt.Copy
+''''  frmMenSortFilter.checkListBox.Items.Clear()
+
+''''For a = 0 To dt.Rows.Count - 1
+''''    frmMenSortFilter.checkListBox.Items.Add(dt.Rows(a).ItemArray(0))
+''''    frmMenSortFilter.checkListBox.SetItemChecked(a, True)
+''''Next
+
+'''' frmSortFilter.tagColumn = colTags(e.ColumnIndex)
+'''frmMenSortFilter.checkListBox.DataSource = dt
+'''If frmMenSortFilter.checkListBox.DisplayMember = "" Then
+'''frmMenSortFilter.checkListBox.DisplayMember = dtMain.Columns(e.ColumnIndex).ColumnName
+'''End If
+''''frmMenSortFilter.checkListBox.Items.Insert(0, "Blanck")
+'''For a = 0 To dt.Rows.Count - 1
+'''' frmMenSortFilter.checkListBox.Items.Add(dt.Rows(a).ItemArray(0))
+'''frmMenSortFilter.checkListBox.SetItemChecked(a, True)
+'''Next
+'''frmMenSortFilter.dt = dt
+''''    frmMenSortFilter.dgv.DataSource = frmMenSortFilter.dt
+'''' frmMenSortFilter.dgv.Columns(1).DisplayIndex = 0
+'''End If
+
+       Dim arrFilter(checkListBox.CheckedItems.Count - 1) As Object
+
+        If checkAddFilter.Checked Then
+            '  ReDim arrFilter(checkListBox.CheckedItems.Count - 1)
+
+        Else
+            checkListBox.CheckedItems.CopyTo(arrFilter, 0)
+            Dim arrAddFilter(lstAddFilter.Items.Count - 1) As Object
+            lstAddFilter.Items.CopyTo(arrAddFilter, 0)
+            Dim Diffrence As String = String.Join("|", arrFilter.Except(lstAddFilter))
+            Dim str() As String = Split(Diffrence, "|")
+            If str(0) <> "" Then
+                lstAddFilter.Items.AddRange(str)
+            ElseIf checkListBox.CheckedItems.Count < lstAddFilter.Items.Count Then
+                lstAddFilter.Items.Clear()
+                lstAddFilter.Items.AddRange(arrFilter)
+            End If
+        End If
+        Dim arr(checkListBox.CheckedItems.Count - 1) As Object
+        checkListBox.CheckedItems.CopyTo(arr, 0)
+        Dim arr2(lstAddFilter.Items.Count - 1)
+        lstAddFilter.Items.CopyTo(arr2, 0)
+
+        checkListBox.CheckedItems.CopyTo(arr, 0)
+
+        excel
+        Dim bitExit As Boolean
+Private Sub Worksheet_Change(ByVal Target As Range)
+
+If bitExit Then
+Application.Undo
+bitExit = False
+Exit Sub
+End If
+Dim Cancel As Boolean
+Cancel = BeforeCellChange(Target)
+If Cancel Then
+bitExit = True
+Target = ""
+End If
+End Sub
+Private Function BeforeCellChange(ByVal Target As Range) As Boolean
+BeforeCellChange = True
+
+End Function
+_______________________________________EXCEL
+Dim bitExit As Boolean
+Private Sub Worksheet_Change(ByVal Target As Range)
+    Dim c As Range
+    Set c = ActiveCell
+    If bitExit Then
+        'ActiveCell.Offset(-1).Select
+        c.Offset(Target.Row - c.Row, Target.Column - c.Column).Select
+        bitExit = False
+        Exit Sub
+    End If
+    Dim Cancel As Boolean
+    Cancel = BeforeCellChange(Target)
+    If Cancel Then
+        bitExit = False
+        Application.EnableEvents = False
+        Target = ""
+        c.Offset(Target.Row - c.Row, Target.Column - c.Column).Select
+        Application.EnableEvents = True
+    End If
+End Sub
+Private Function BeforeCellChange(ByVal Target As Range) As Boolean
+If IsArray(Target) Then
+For a = 1 To Target.Rows.Count
+For b = 1 To Target.Columns.Count
+dd = Target.Cells(a, b)
+
+
+Next b
+Next a
+
+
+End If
+    rem set your rule
+    If Target.Value <> "w" Then BeforeCellChange = True
+End Function
+
+_________________________________________________________________________________Parallel
+    Dim lst As New List(Of String) From {"meysam", ".nettips", "vahidnasirii","ennd"}
+        Parallel.ForEach(lst, Sub(item)
+                                  ' ss = item
+                                  ' MsgBox(String.Format("name:{0}", item))
+                                  ListBox1.Items.Add(item)'is error
+                              End Sub)
+     Parallel.For(0, 50, Sub(i, idx)
+
+                            End Sub)
+_________________________________________________GroupBy
+        Dim outputArray = MyDataTable.AsEnumerable().
+    GroupBy(Function(row) row.Field(Of String)("B")).
+    Select(Function(group) New Object() {
+        group.Key,
+        group.Select(Function(row) Integer.Parse(row.Field(Of String)("A"))).ToArray()
+    }).
+    ToArray()
+    ____________________________-
+      Dim ArrOut = From iRow In MyDataTable.AsEnumerable()
+                     Group iRow.Item("A") By Head = iRow.Item("B") Into Group
+                     Select New Object() {Group, Head}
+ Dim ArrOut = From iRow In MyDataTable.AsEnumerable()
+ Group iRow.Item("A") By Head = iRow.Item("B") Into Group
+ Select Group
+__________________________________________________________________GroupBy
+   dr = dtMain.Select(columName & " = '" & stt4 & "'")
+                'dr.GroupBy(Of Integer)()
+                Dim groups = dr.GroupBy(Function(row) row(columName))
+                 ________________________________________GroupBy_____
+        Dim myArray As Integer() = {1, 2, 3, 5, 6, 8, 9, 7, 10, 20, 21, 23, 22}
+                Dim result As Integer()() = myArray _
+    .OrderBy(Function(x) x) _
+    .Select(Function(x, i) New With {x, i, .d = x - i}) _
+    .GroupBy(Function(t) t.d) _
+    .Select(Function(g) New Integer() {g.Min(Function(t) t.x), g.Max(Function(t) t.x)}) _
+    .ToArray
+    __________________________________________________________Group
+            Dim dr() As DataRow = drSelect.Select("[" & columName & "] is Null", "")
+        Dim sttIdBlank As String() = dr.AsEnumerable().Select(Function(r) CStr(r.Item(0))).ToArray
+        dr = drSelect.Select("[" & columName & "] is not Null", columName)
+        Dim q = From row In dr.AsEnumerable()
+                Group row("id") By key = row(columName) Into Group
+                Select New With {.Key = CStr(key.ToString()), .Values = CStr(String.Join(" ", Group.Select(Function(r) r.ToString())))}
+      GroupKey = q.Select(Function(item) item.Key).ToArray
+        GroupValues = q.Select(Function(item) item.Values).ToArray
+    _____________________________________________
+           Dim columName As String = "A"
+        Dim q = From row In MyDataTable.AsEnumerable()
+                Group row("id") By key = row(columName) Into Group
+                Select New With {.Key = CStr(key.ToString()), .Values = Group.Select(Function(r) CInt(r)).ToArray}
+        Dim GroupKey As String() = q.Select(Function(item) item.Key).ToArray
+        Dim GroupValues As Integer()() = q.Select(Function(item) item.Values).ToArray
+        Dim stt2 As String() = GroupValues.Select(Function(h) String.Join(" ", h)).ToArray
+____________________________________________________________________________بدست آوردن نان پابلیک های آبجکت by Karen Payne
+         Dim fi As Reflection.FieldInfo = dtMain.Rows(1).GetType().GetField("_rowID", BindingFlags.NonPublic Or BindingFlags.Instance)
+            dd = fi.GetValue(dtMain.Rows(1))
+_________________________________  Convert String() To Integer()
+  Dim arr4(sss.Length - 1) As Integer
+ arr4 = Array.ConvertAll(sss, Function(stt) Integer.Parse(stt))
+
+_________________________________________________________________________________________________
+        Dim unique = myList.Select(Function(value, index) New With {value, index}).Distinct()
+        //get unique values and its indexes
+        Dim uniquelist As List(Of Tuple(Of String, Integer)) = myList.Distinct().[Select](Function(x) New Tuple(Of String, Integer)(x, CInt(myList.IndexOf(x)))).ToList()
+        'find indexes of duplicates
+        Dim indOfDup As List(Of Integer) = Enumerable.Range(0, myList.Count).Where(Function(x) Not uniquelist.Any(Function(y) y.Item2 = x)).ToList()
+        ______________________________________________
+    Dim result As Integer()() = ArrAll.Distinct() _
+    .OrderBy(Function(x) x).Select(Function(x, i) New With {x, i, .d = x - i}) _
+    .GroupBy(Function(t) t.d).Select(Function(g) New Integer() {g.Min(Function(t) t.x), g.Max(Function(t) t.x)}) _
+    .ToArray
+    _____________________________C#
+    string[] result = dt.Rows
+                    .Cast<DataRow>( )
+                    .Select( r => r.Field<string>( "devID" ) )
+                    .Distinct( )
+                    .ToArray( );
+    ____________________________________Except()
+    Dim numbers1() As Double = { 2.0, 2.0, 2.1, 2.2, 2.3, 2.3, 2.4, 2.5 }
+Dim numbers2() As Double = {2.2}
+
+' Select the elements from the first array that are not
+' in the second array.
+Dim onlyInFirstSet As IEnumerable(Of Double) = numbers1.Except(numbers2)
+________________________________________________________________CopyToDataTable()
+        Dim orders As DataTable = dt
+        Dim query =
+    From order In orders.AsEnumerable()
+    Where order.Field(Of String)("id") = "5"
+    Select order
+        ' Create a table from the query.
+        Dim boundTable As DataTable = query.CopyToDataTable()
+        ________________________relationship two DataTable________Linq____Join OrderBy
+        Dim resultTable As New DataTable("Result")
+resultTable.Columns.Add("filter")
+resultTable.Columns.Add("words")
+
+Dim query = dtParent.AsEnumerable() _
+            .Join(dtChild.AsEnumerable(),
+                  Function(parentRow) parentRow("filter").ToString(),
+                  Function(childRow) childRow("Filter").ToString(),
+                  Function(parentRow, childRow) New With {
+                      .Filter = parentRow("filter"),
+                      .Words = parentRow("words")
+                  }) _
+            .OrderBy(Function(row) row.Filter)
+
+query.Select(Function(row) resultTable.Rows.Add(row.Filter, row.Words)).ToArray()
+_______________________________________________________Multi Filter With Like
+If InStr(inText, "*") = 0 Then
+                    sttZarb = "'%" & inText & "%'"
+                    strFilter = "[" & dt.Columns(a).ColumnName & "] Like " & sttZarb
+                Else
+                    Dim SplSeparator() = Split(inText, "*")
+                    Dim sttResault As String = ""
+                    For ss = 1 To SplSeparator.Length
+                        sttResault += IIf(SplSeparator(ss - 1) = "", "", IIf(sttResault = "", "", " and ") & "[" & dt.Columns(a).ColumnName & "] Like " & IIf(SplSeparator(ss - 1) = "" Or (ss > 1 And SplSeparator(ss - 1) <> ""), "'%", "'") & SplSeparator(ss - 1) & IIf(SplSeparator(ss - 1) <> "" And ss < SplSeparator.Length, "%'", ""))
+                    Next
+                    If sttResault <> "" AndAlso Mid(sttResault, sttResault.Length, 1) <> "'" Then
+                        sttResault += "'"
+                    End If
+                    strFilter = sttResault
+                End If
+________________________________________________________Array
+  Dim MyResult = {({"Table1", ({"Column1", "Column2", "Column3"})}), ({"Table2", ({"Column1"})}), ({"Table3", ({"Column1", "Column2"})})}
+   Dim Arr3D = {({"a", ({1, 3, 4})}), ({"b", ({2})}), ({"c", ({5, 6})})}
+    Dim result = From table In MyDataSet.Tables.Cast(Of DataTable)()
+                     Select {table.TableName, table.Columns.Cast(Of DataColumn).Select(Function(column) column.ColumnName).ToArray()}
+      Dim images = {New String() {"aa"}, New String() {"ghgh", "hjhjhjh"}, New String() {}, New String() {}}
+        Dim MyArray As Integer()() = New Integer(2)() {}
+        MyArray(0) = New Integer() {2, 10}
+        MyArray(1) = New Integer() {3, 5}
+        MyArray(2) = New Integer() {4, 7}
+_____________________________________________________Convert String to 2D Array
+       Dim myStt As String = Replace("1 3,4 6,7 2,23 4", ",")
+        Dim ResultArray As Integer()() = myStt.Split(","c).Select(Function(p) p.Split(" "c).Take(2).Select(Function(s) CInt(Val(s))).ToArray).ToArray
+______________________________________for___ValidateRowOfParent_________Multi Split() Return 2d Array
+table1|cn|opt|c1|c5!=3|c4<>table2|cn|opt|c1|c5!=3|c4|c6|c8=c3
+ Dim spl7 As String()() = Split(Pro.ValidateRowOfParent, "<>").Select(Function(p) Split(p, "|")).ToArray
+__________________________________________________Linq___CopyToDataTable()
+       Dim query = drSelect.AsEnumerable().Select(Function(row) row.Field(Of String)(columName)).Distinct()
+        Dim distinctTable As DataTable = New DataTable()
+        distinctTable.Columns.Add(columName, GetType(String))
+        Dim distinctRows = query.Select(Function(value) distinctTable.LoadDataRow(New Object() برای یک ستون{value}, False))
+        Dim dd As DataTable = distinctRows.CopyToDataTable()
+
+            Dim distinctRows = q.Select(Function(value) distinctTable.LoadDataRow(New Object()برای 2 ستون  {value.Key, value.Values}, False))
+        Dim dd As DataTable = distinctRows.CopyToDataTable()
+_______________________________Filter DataTable With Array
+    Dim arr() = {2, 3}
+        Dim query =
+            From order In orders.AsEnumerable()
+            Where arr.Contains(order.Field(Of Integer)("parentId"))
+            Order By order.Field(Of Integer)("parentId")
+            Select order
+
+        Dim view As DataView = query.AsDataView()
+        dtResult = view.ToTable
+_________________________________________________Linq Get Index____
+          Dim indices() As Integer = arr1.Select(Function(v, i) New With {v, i})
+          .Where(Function(p) Not arr2.Contains(p.v)).Select(Function(p) p.i).ToArray
+ ____________________________________________________Dynamic
+              Private Function FilterByChildTable2(DynamicColumn As DataTable, StaticColumn As DataTable) As DataTable
+        Dim query =
+            From sel In DynamicColumn.AsEnumerable()
+            Where StaticColumn.AsEnumerable().Select(Function(Helper) Helper.Item("chidId")).Contains(sel.Item("parentId"))
+            Order By sel.Field(Of Integer)("parentId")
+            Select sel 
+        Return query.CopyToDataTable() 'view.ToTable
+    End Function
+    ___________________________Dynamic
+    Private Function FilterByChildTable(DynamicColumn As DataTable, StaticColumn As DataTable, Optional WithSort As Boolean = False) As DataTable
+            Dim dynamicColumnNames = DynamicColumn.Columns.Cast(Of DataColumn)().Skip(1).Select(Function(col) col.ColumnName).ToArray()
+        Dim query = DynamicColumn.AsEnumerable() _
+               .Join(StaticColumn.AsEnumerable(),
+                     Function(parentRow) parentRow("parentId").ToString(),
+                     Function(childRow) childRow("chidId").ToString(),
+                     Function(parentRow, childRow) New With {
+                         .Filter = parentRow("parentId"), ' Static Column
+                         .DynamicData = dynamicColumnNames.Select(Function(colName) parentRow(colName)).ToArray() ' Dynamic Columns
+                     }) _
+               .OrderBy(Function(row) row.Filter)
+
+        Dim resultTable As New DataTable("Result") ' Dynamic
+        resultTable.Columns.Add("parentId") ' Static Column
+        For Each colName In dynamicColumnNames
+            resultTable.Columns.Add(colName) ' Dynamic Columns
+        Next
+
+        Dim dtResult As DataTable = resultTable.Clone() ' Create a clone of resultTable
+
+        For Each row In query
+            Dim newRow = dtResult.NewRow()
+            newRow("parentId") = row.Filter
+
+            For i As Integer = 0 To dynamicColumnNames.Length - 1
+                newRow(i + 1) = row.DynamicData(i)
+            Next
+
+            dtResult.Rows.Add(newRow)
+        Next
+
+        If WithSort Then
+            dtResult.DefaultView.Sort = "parentId ASC" ' Sort dtResult by parentId column in ascending order
+            dtResult = dtResult.DefaultView.ToTable()
+        End If
+
+        Return dtResult
+    End Function
+_______________________________Dynamic
+               Dim OnlySelect As String() = {"B", "C"}
+            Dim arr = (From row In MyDataTable.AsEnumerable()
+                   Select OnlySelect.Select(Function(h) row.Item(h)).ToArray).ToArray
+ _________Dynamic  Transpose 
+Dim ResultArray As String() = Enumerable.Range(0, dynamicColumn.Length) _
+    .Select(Function(index) index + 1 & " | " & dynamicColumn(index) & " | " & String.Join(",", dtValidtion.AsEnumerable().Select(Function(row) row(dynamicColumn(index)).ToString()).Distinct())) _
+    .ToArray()
+_________________________________________
+		Dim arrSetWidthColumn() = Split(My.Settings.WidthColumns, "|")
+			arrSetWidthColumn.ToList.ForEach(Sub(g) dgv.Columns(CInt(Split(g, ",")(0))).Width = CInt(Split(g, ",")(1)))
+		Dim q = dgv.Columns.Cast(Of DataGridViewColumn).Select(Function(ss) Join(New Object() {ss.Name, ss.Width}.ToArray, ",")).ToArray
+____________________________2D Array
+        Dim result As String()() = dtSet.AsEnumerable.Select(Function(r) r.ItemArray.Select(Function(x) x.ToString).ToArray).ToArray
+___________________________________________Get Address Cell DataGridView UpLeft to BottomRight
+Dim AddressCells As DataGridViewCell() =
+    (From row As DataGridViewRow In dgv.Rows
+     From cell As DataGridViewCell In row.Cells
+     Select cell).ToArray()
+             'Dim CellAddress As New List(Of DataGridViewCell)
+        'For aa = 0 To dgv.RowCount - 1
+        '    For bb = 0 To dgv.ColumnCount - 1
+        '        CellAddress.Add(dgv.Item(bb, aa))
+        '    Next
+        'Next
+___________________________________________GET Paths
+    Public PathsAll As String
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim BeginPath As String = "D:\"
+        FilesSearch(BeginPath)
+        Dim i As Integer = Split(PathsAll, vbNewLine).Length 'i = 9294
+        'TextBox1.Text = AddPath
+    End Sub
+    Public Sub FilesSearch(BeginPath As String)
+        Dim arrFolders(0) As String
+        Dim TmpDir As String
+        Dim arrFiles As String
+        Dim countDir As Integer = 0
+        arrFolders(countDir) = ""
+        If Microsoft.VisualBasic.Right(BeginPath, 1) <> "\" Then
+            BeginPath = BeginPath & "\"
+        End If
+        TmpDir = Dir(BeginPath, vbDirectory)
+        ' On Error Resume Next
+        Do While TmpDir <> ""
+            AppendFiles(BeginPath & TmpDir)
+            If TmpDir <> "." And TmpDir <> ".." Then
+                If (GetAttr(BeginPath & TmpDir) And vbDirectory) = vbDirectory Then
+                    arrFolders(countDir) = BeginPath & TmpDir & "\"
+                    countDir += 1
+                    ReDim Preserve arrFolders(countDir)
+                End If
+            End If
+            TmpDir = Dir()
+        Loop
+        arrFiles = Dir(BeginPath)
+        Do Until arrFiles = ""
+            arrFiles = Dir()
+        Loop
+              For X = 0 To UBound(arrFolders) - 1
+            FilesSearch(arrFolders(X))
+
+        Next X
+    End Sub
+    Public Sub AppendFiles(InPath As String)
+        PathsAll += vbNewLine & InPath
+        '  Dim i As Integer = Split(PathsAll, vbNewLine).Length 'i = 9294
+    End Sub
+    ____________________________________DataTable To TreeView
+            Dim array = (From row In MyDataTable.AsEnumerable()
+                     Select row.ItemArray).ToArray()
+           For Each item In array
+            Dim parentNode As TreeNode = Nothing
+            For i = 0 To item.Length - 1
+                Dim value = item(i).ToString()
+                Dim node As TreeNode = Nothing
+
+                If parentNode IsNot Nothing Then
+                    node = parentNode.Nodes.Cast(Of TreeNode)() _
+                        .FirstOrDefault(Function(n) n.Text = value)
+                Else
+                    node = frmValidCellOfCurrentColumn.trvValidtion.Nodes.Cast(Of TreeNode)() _
+                        .FirstOrDefault(Function(n) n.Text = value)
+                End If
+
+                If node Is Nothing Then
+                    node = New TreeNode(value)
+                    If parentNode IsNot Nothing Then
+                        parentNode.Nodes.Add(node)
+                    Else
+                        frmValidCellOfCurrentColumn.trvValidtion.Nodes.Add(node)
+                    End If
+                End If
+
+                parentNode = node
+            Next
+        Next
+____________________________________Row_______Validating
+Private Sub DataGridView1_RowValidating(sender As Object, e As DataGridViewCellCancelEventArgs) Handles DataGridView1.RowValidating
+        Dim newRowIndex As Integer = e.RowIndex
+
+        If newRowIndex < DataGridView1.Rows.Count - 1 Then
+            Dim newRowValues As New List(Of String)
+            For Each cell As DataGridViewCell In DataGridView1.Rows(newRowIndex).Cells
+                newRowValues.Add(cell.Value.ToString())
+            Next
+
+            Dim duplicateRow = (From row As DataGridViewRow In DataGridView1.Rows.Cast(Of DataGridViewRow)()
+                                Where row.Index <> newRowIndex AndAlso
+                                      row.Cells.Cast(Of DataGridViewCell)().All(Function(cell) cell.Value IsNot Nothing) AndAlso
+                                      Enumerable.Range(0, DataGridView1.Columns.Count).All(Function(columnIndex) row.Cells(columnIndex).Value.ToString() = newRowValues(columnIndex))
+                                Select row).FirstOrDefault()
+
+            If duplicateRow IsNot Nothing Then
+                MessageBox.Show("New lines duplicate existing lines! Please modify it!", "Duplicate row detection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                e.Cancel = True
+            End If
+        End If
+    End Sub
+________________________Row_______Validating
+Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim newRowData() As String = {"CABLE", "MV", "1x240", "Air Building1"}
+
+        Dim dataView As New DataView(MyDataTable)
+        dataView.RowFilter = GetRowFilterExpression(newRowData)
+
+        Dim isDuplicate As Boolean = dataView.Count > 0
+
+        If Not isDuplicate Then
+            MyDataTable.Rows.Add(newRowData)
+            Console.WriteLine("New row added.")
+        Else
+            Console.WriteLine("New row duplicate existing rows.")
+        End If
+    End Sub
+
+    Function GetRowFilterExpression(newRowData() As String) As String
+        Dim expressions As New List(Of String)
+        For Each columnName As String In MyDataTable.Columns.Cast(Of DataColumn)().Select(Function(col) col.ColumnName)
+            expressions.Add(String.Format("{0} = '{1}'", columnName, newRowData(Array.IndexOf(MyDataTable.Columns.Cast(Of DataColumn)().Select(Function(col) col.ColumnName).ToArray(), columnName))))
+        Next
+        Return String.Join(" AND ", expressions)
+    End Function
+    ________________________________بدست آوردن تعداد سلول تکراری ستون 1
+Dim MyTable As New DataTable
+MyTable.Columns.Add("Col1", GetType(String))
+MyTable.Columns.Add("Col2")
+MyTable.Rows.Add({"A", "w1"})
+MyTable.Rows.Add({"B", "w2"})
+MyTable.Rows.Add({"A", "w3"})
+MyTable.Rows.Add({"B", "w4"})
+MyTable.Rows.Add({"A", "w5"})
+
+Dim Result As Dictionary(Of String, Integer) = MyTable.AsEnumerable().
+    GroupBy(Function(row) row.Field(Of String)("Col1")).
+    ToDictionary(Function(group) group.Key, Function(group) group.Count())
+
+' Result now contains the following:
+' {{"A", 3}, {"B", 2}}
