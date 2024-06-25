@@ -63,8 +63,8 @@ Public Class frmTimeSheet
         'SematHa( ID fName )
         'FaaliatHa( ID Sarparast ZirGroh WorkType Area tarikh )
 
-        ds.Relations.Add(DB.RelationTables("Persenel@qHozorGhiab", ds.Tables("Persenel").Columns("ID"), ds.Tables("qHozorGhiab").Columns("idPer")))
-
+        'ds.Relations.Add(DB.RelationTables("Persenel@qHozorGhiab", ds.Tables("Persenel").Columns("ID"), ds.Tables("qHozorGhiab").Columns("idPer")))
+        'ds.Relations.Add(DB.RelationTables("Persenel@qHozorGhiab", ds.Tables("Persenel").Columns("ID"), ds.Tables("qHozorGhiab").Columns("idPer")))
 
         dt0Persenel = ds.Tables(Split(NameOf(dt0Persenel), "0")(1))
         dgv_Persenel.DataTable = dt0Persenel
@@ -73,15 +73,26 @@ Public Class frmTimeSheet
         dgv_Persenel.dgv.Columns("Sel").Visible = False
 
 #Region "آماده سازی جدول انتخاب افراد"
-        dt0SelPersenel.Columns.Add("Sel", GetType(Boolean))
-        dt0SelPersenel.Columns.Add("ID", GetType(Integer))
-        dt0SelPersenel.Columns.Add("Code", GetType(String))
-        dt0SelPersenel.Columns.Add("fName", GetType(String))
-        dt0SelPersenel.Columns.Add("Famil", GetType(String))
-        dt0SelPersenel.Columns.Add("TimeStart", GetType(String))
-        dt0SelPersenel.Columns.Add("TimeEnd", GetType(String))
-        dt0SelPersenel.Columns.Add("Semat", GetType(String))
-        dgv_SelPersenel.DataTable = dt0SelPersenel
+        'dt0SelPersenel.Columns.Add("Sel", GetType(Boolean))
+        'dt0SelPersenel.Columns.Add("ID", GetType(Integer))
+        'dt0SelPersenel.Columns.Add("Code", GetType(String))
+        'dt0SelPersenel.Columns.Add("fName", GetType(String))
+        'dt0SelPersenel.Columns.Add("Famil", GetType(String))
+        'dt0SelPersenel.Columns.Add("TimeStart", GetType(String))
+        'dt0SelPersenel.Columns.Add("TimeEnd", GetType(String))
+        'dt0SelPersenel.Columns.Add("Semat", GetType(String))
+        'dgv_SelPersenel.DataTable = dt0SelPersenel
+
+        '' Dim dRowSelPer As DataRow = dt0SelPersenel.NewRow
+        'For Each a As DataRow In dt0Persenel.Rows
+        '    dt0SelPersenel.Rows.Add({False, a.Item("ID"), a.Item("Code"), a.Item("fName"), a.Item("Famil"), Nothing, Nothing, a.Item("Semat")})
+        'Next
+        '' ست کردن کلید اصلی
+        'dgv_SelPersenel.DataTable.PrimaryKey = New DataColumn() {dgv_SelPersenel.DataTable.Columns("ID")}
+
+        dgv_SelPersenel.DataTable = dt0Persenel
+        dgv_SelPersenel.dgv.Columns.Add("TimeStart", "TimeStart")
+        dgv_SelPersenel.dgv.Columns.Add("TimeEnd", "TimeEnd")
         dgv_SelPersenel.dgv.Columns("Sel").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader
         dgv_SelPersenel.dgv.Columns("ID").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader
         dgv_SelPersenel.dgv.Columns("Code").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader
@@ -89,13 +100,6 @@ Public Class frmTimeSheet
         dgv_SelPersenel.dgv.Columns("TimeEnd").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader
         dgv_SelPersenel.dgv.Columns("Sel").ReadOnly = True
         dgv_SelPersenel.dgv.AllowUserToAddRows = False
-        ' Dim dRowSelPer As DataRow = dt0SelPersenel.NewRow
-        For Each a As DataRow In dt0Persenel.Rows
-            dt0SelPersenel.Rows.Add({False, a.Item("ID"), a.Item("Code"), a.Item("fName"), a.Item("Famil"), Nothing, Nothing, a.Item("Semat")})
-        Next
-        ' ست کردن کلید اصلی
-        dgv_SelPersenel.DataTable.PrimaryKey = New DataColumn() {dgv_SelPersenel.DataTable.Columns("ID")}
-
 #End Region
 #Region "چیدمان افراد"
         dt0FaaliatHa = ds.Tables(Split(NameOf(dt0FaaliatHa), "0")(1))
@@ -112,10 +116,57 @@ Public Class frmTimeSheet
         dgv_qHozorGhiab.DataTable.PrimaryKey = New DataColumn() {dgv_qHozorGhiab.DataTable.Columns("IDPer"), dgv_qHozorGhiab.DataTable.Columns("Tarikh")}
         dgv_qHozorGhiab.DataTable.ExtendedProperties.Add("Filter", "")
         dicDateCountPersonel = dgv_qHozorGhiab.Get_DicCountOfDublicateColumn("tarikh")
-        'tlsHozorGhiab.Items.Add(sep)
-        'tlsHozorGhiab.Items.Add(tsButRej)
-        'tlsHozorGhiab.Items.Add(tsButResult)
-        'tlsHozorGhiab.Items.Add(tsButNonFilter)
+#Region "Relations"
+
+        Dim LisRelString As New List(Of String)
+        'Dim sttRel As String = "Persenel@fName>qHozorGhiab@fName|Persenel@famil>qHozorGhiab@famil|Persenel@semat>qHozorGhiab@semat|Persenel@tel>qHozorGhiab@tel"
+
+        'Dim splRel As String() = Split(sttRel, "|")
+        'For Each r In splRel
+
+        'Next
+
+        ds.Relations.Add(DB.RelationTables("Persenel@qHozorGhiab", ds.Tables("Persenel").Columns("ID"), ds.Tables("qHozorGhiab").Columns("idPer")))
+
+        Dim MultiColumnParent As DataColumn() = {dgv_Persenel.DataTable.Columns("ID"), dgv_Persenel.DataTable.Columns("fName")}
+        Dim MultiColumnChild As DataColumn() = {dgv_qHozorGhiab.DataTable.Columns("idPer"), dgv_qHozorGhiab.DataTable.Columns("fName")}
+        ds.Relations.Add(New DataRelation("Persenel@qHozorGhiab_fName", MultiColumnParent, MultiColumnChild, createConstraints:=True))
+
+        MultiColumnParent = {dgv_Persenel.DataTable.Columns("ID"), dgv_Persenel.DataTable.Columns("famil")}
+        MultiColumnChild = {dgv_qHozorGhiab.DataTable.Columns("idPer"), dgv_qHozorGhiab.DataTable.Columns("famil")}
+        ds.Relations.Add(New DataRelation("Persenel@qHozorGhiab_famil", MultiColumnParent, MultiColumnChild, createConstraints:=True))
+
+        MultiColumnParent = {dgv_Persenel.DataTable.Columns("ID"), dgv_Persenel.DataTable.Columns("semat")}
+        MultiColumnChild = {dgv_qHozorGhiab.DataTable.Columns("idPer"), dgv_qHozorGhiab.DataTable.Columns("semat")}
+        ds.Relations.Add(New DataRelation("Persenel@qHozorGhiab_semat", MultiColumnParent, MultiColumnChild, createConstraints:=True))
+
+        MultiColumnParent = {dgv_Persenel.DataTable.Columns("ID"), dgv_Persenel.DataTable.Columns("tel")}
+        MultiColumnChild = {dgv_qHozorGhiab.DataTable.Columns("idPer"), dgv_qHozorGhiab.DataTable.Columns("tel")}
+        ds.Relations.Add(New DataRelation("Persenel@qHozorGhiab_tel", MultiColumnParent, MultiColumnChild, createConstraints:=True))
+
+        ' ds.Relations.Add(New DataRelation("Persenel@SelPersenel", dgv_Persenel.DataTable.Columns("ID"), dgv_SelPersenel.DataTable.Columns("ID"), createConstraints:=True))
+
+        'MultiColumnParent = {dgv_Persenel.DataTable.Columns("ID"), dgv_Persenel.DataTable.Columns("fName")}
+        'MultiColumnChild = {dgv_SelPersenel.DataTable.Columns("ID"), dgv_SelPersenel.DataTable.Columns("fName")}
+        'ds.Relations.Add(New DataRelation("Persenel@SelPersenel_fName", MultiColumnParent, MultiColumnChild, createConstraints:=True))
+
+        'MultiColumnParent = {dgv_Persenel.DataTable.Columns("ID"), dgv_Persenel.DataTable.Columns("famil")}
+        'MultiColumnChild = {dgv_SelPersenel.DataTable.Columns("ID"), dgv_SelPersenel.DataTable.Columns("famil")}
+        'ds.Relations.Add(New DataRelation("Persenel@SelPersenel_famil", MultiColumnParent, MultiColumnChild, createConstraints:=True))
+
+        'MultiColumnParent = {dgv_Persenel.DataTable.Columns("ID"), dgv_Persenel.DataTable.Columns("semat")}
+        'MultiColumnChild = {dgv_SelPersenel.DataTable.Columns("ID"), dgv_SelPersenel.DataTable.Columns("semat")}
+        'ds.Relations.Add(New DataRelation("Persenel@SelPersenel_semat", MultiColumnParent, MultiColumnChild, createConstraints:=True))
+
+        ' LisRel.Add(New DataRelation("Per@Hozo_Name",))
+
+        ' ds.Relations.Add(rel)
+        'With rel
+        '    .RelationName = "Persenel@qHozorGhiab_fName"
+        '    .ParentColumns = {ds.Tables("Persenel").Columns("ID"), ds.Tables("Persenel").Columns("fName")}
+        'End With
+
+#End Region
 
 
     End Sub
@@ -173,7 +224,7 @@ Public Class frmTimeSheet
     End Sub
 
     Private Sub dgv_SelPersenel__CellMouseClick(sender As dgv.uDgv, e As DataGridViewCellMouseEventArgs) Handles dgv_SelPersenel._CellMouseClick
-        If (e.Button = MouseButtons.Left And e.ColumnIndex > -1 And e.RowIndex > -1) AndAlso sender.dgv.Columns(sender.dgv.CurrentCell.ColumnIndex).Name = "Sel" Then
+        If (e.Button = MouseButtons.Left And e.ColumnIndex > -1 And e.RowIndex > -1) AndAlso UCase(sender.dgv.Columns(sender.dgv.CurrentCell.ColumnIndex).Name) = UCase("Sel") Then
             sender.dgv.CurrentRow.Cells("TimeStart").Value = IIf(Not sender.dgv.CurrentCell.EditedFormattedValue, "07:00", "")
             sender.dgv.CurrentRow.Cells("TimeEnd").Value = IIf(Not sender.dgv.CurrentCell.EditedFormattedValue, "17:00", "")
             sender.dgv.CurrentRow.Cells("Sel").Value = Not sender.dgv.CurrentRow.Cells("Sel").Value
@@ -283,20 +334,33 @@ Public Class frmTimeSheet
             '    Dim remowRow As DataRow() = dgv_HozorGhiab.DataTable.Select(dgv_HozorGhiab.DataTable.DefaultView.RowFilter & " And  [IdPer]=" & drow.Item("ID"))
             '    dgv_HozorGhiab.DataTable.Rows.Remove(remowRow(0))
             'End If
-            Dim dRowSelPer As DataRow = dgv_SelPersenel.DataTable.Rows.Find(drow.Item("ID"))
-            Dim dRowData As DataRow = dgv_qHozorGhiab.DataTable.NewRow
-            dRowData.ItemArray = {drow.Item("ID"), UDate1.textDate, dRowSelPer.Item("TimeStart"), dRowSelPer.Item("TimeEnd")}
-            dgv_qHozorGhiab.DataTable.Rows.Add(dRowData)
-            sttSql = dgv_qHozorGhiab.Sql_Insert(dRowData, "HozorGhiab", ColumnsFilter:=Split("Sel,fName,famil,semat,tel", ","))
-            DB.SQL_ExecuteNonQuery(dgv_qHozorGhiab.dgv, sttSql)
+
+            'Sel,ID,Code,fName,Famil,TimeStart,TimeEnd,Semat
+
+
+
+
         Next
-        Dim drows As DataRow() = dgv_qHozorGhiab.DataTable.Select("[tarikh] Like '" & UDate1.textDate & "'")
-        drows.ToList().ForEach(Sub(g)
-                                   g.Item("fName") = dgv_Persenel.DataTable.Rows.Find(g.Item("idPer")).Item("fName")
-                                   g.Item("Famil") = dgv_Persenel.DataTable.Rows.Find(g.Item("idPer")).Item("Famil")
-                                   g.Item("Semat") = dgv_Persenel.DataTable.Rows.Find(g.Item("idPer")).Item("Semat")
-                                   g.Item("Semat") = dgv_Persenel.DataTable.Rows.Find(g.Item("idPer")).Item("Semat")
-                               End Sub)
+
+        For Each r As DataGridViewRow In dgv_SelPersenel.dgv.Rows
+            If r.Cells("Sel").Value Then
+                Dim dRowSelPer As DataRow = dgv_SelPersenel.DataTable.Rows.Find(r.Cells("ID").Value)
+                'idPer,tarikh,TimeStart,TimeEnd,TimeLen,fName,famil,semat,tel
+                Dim dRowData As DataRow = dgv_qHozorGhiab.DataTable.NewRow
+                dRowData.ItemArray = {r.Cells("ID").Value, UDate1.textDate, r.Cells("TimeStart").Value, r.Cells("TimeEnd").Value, Nothing, r.Cells("fName").Value, r.Cells("famil").Value, r.Cells("semat").Value}
+                dgv_qHozorGhiab.DataTable.Rows.Add(dRowData)
+                sttSql = dgv_qHozorGhiab.Sql_Insert(dRowData, "HozorGhiab", ColumnsFilter:=Split("Sel,fName,famil,semat,tel", ","))
+                DB.SQL_ExecuteNonQuery(dgv_qHozorGhiab.dgv, sttSql)
+            End If
+        Next
+
+        'Dim drows As DataRow() = dgv_qHozorGhiab.DataTable.Select("[tarikh] Like '" & UDate1.textDate & "'")
+        'drows.ToList().ForEach(Sub(g)
+        '                           g.Item("fName") = dgv_Persenel.DataTable.Rows.Find(g.Item("idPer")).Item("fName")
+        '                           g.Item("Famil") = dgv_Persenel.DataTable.Rows.Find(g.Item("idPer")).Item("Famil")
+        '                           g.Item("Semat") = dgv_Persenel.DataTable.Rows.Find(g.Item("idPer")).Item("Semat")
+        '                           g.Item("Semat") = dgv_Persenel.DataTable.Rows.Find(g.Item("idPer")).Item("Semat")
+        '                       End Sub)
         dicDateCountPersonel = dgv_qHozorGhiab.Get_DicCountOfDublicateColumn("tarikh")
         '   dgv_qHozorGhiab.dgv.Ref
     End Sub
@@ -340,16 +404,24 @@ Public Class frmTimeSheet
         dgv_qHozorGhiab.DataTable.DefaultView.RowFilter = "[tarikh] Like '" & UDate1.textDate & "'"
         dgv_qHozorGhiab.DataTable.ExtendedProperties.Item("Filter") = dgv_qHozorGhiab.DataTable.DefaultView.RowFilter
         Dim q As String() = dgv_qHozorGhiab.DataTable.DefaultView.Cast(Of DataRowView).Select(Function(g) g.Item("IdPer").ToString).ToArray
-        For Each rSelPer As DataRow In dgv_SelPersenel.DataTable.Rows
-            rSelPer.Item("Sel") = False
-            rSelPer.Item("TimeStart") = ""
-            rSelPer.Item("TimeEnd") = ""
+
+        For Each rSelPer As DataGridViewRow In dgv_SelPersenel.dgv.Rows
+            If q.Contains(rSelPer.Cells("ID").Value) Then
+                rSelPer.Cells("Sel").Value = True
+                rSelPer.Cells("TimeStart").Value = dgv_qHozorGhiab.DataTable.Rows.Find({rSelPer.Cells("ID").Value, UDate1.textDate}).Item("TimeStart")
+                rSelPer.Cells("TimeEnd").Value = dgv_qHozorGhiab.DataTable.Rows.Find({rSelPer.Cells("ID").Value, UDate1.textDate}).Item("TimeEnd")
+            Else
+                rSelPer.Cells("Sel").Value = False
+                rSelPer.Cells("TimeStart").Value = ""
+                rSelPer.Cells("TimeEnd").Value = ""
+            End If
+
         Next
-        For Each rHozor As DataRow In dgv_qHozorGhiab.DataTable.DefaultView.ToTable.Rows
-            dgv_SelPersenel.DataTable.Rows.Find(rHozor.Item("IDPer")).Item("Sel") = True
-            dgv_SelPersenel.DataTable.Rows.Find(rHozor.Item("IDPer")).Item("TimeStart") = rHozor.Item("TimeStart")
-            dgv_SelPersenel.DataTable.Rows.Find(rHozor.Item("IDPer")).Item("TimeEnd") = rHozor.Item("TimeEnd")
-        Next
+        'For Each rHozor As DataRow In dgv_qHozorGhiab.DataTable.DefaultView.ToTable.Rows
+        '    dgv_SelPersenel.DataTable.Rows.Find(rHozor.Item("IDPer")).Item("Sel") = True
+        '    '  dgv_SelPersenel.DataTable.Rows.Find(rHozor.Item("IDPer")).Item("TimeStart") = rHozor.Item("TimeStart")
+        '    '  dgv_SelPersenel.DataTable.Rows.Find(rHozor.Item("IDPer")).Item("TimeEnd") = rHozor.Item("TimeEnd")
+        'Next
         'For Each a As DataGridViewRow In dgv_SelPersenel.dgv.Rows
         '    If q.Contains(a.Cells("ID").Value) Then
         '        a.Cells("Sel").Value = True

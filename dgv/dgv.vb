@@ -477,6 +477,19 @@ Public Class uDgv
 
     End Sub
 
+    Private Sub dgv_ColumnDisplayIndexChanged(sender As Object, e As DataGridViewColumnEventArgs) Handles dgv.ColumnDisplayIndexChanged
+        If dgv.CurrentCell IsNot Nothing Then
+            Dim result As New List(Of Tuple(Of String, Integer))()
+            For Each col As DataGridViewColumn In dgv.Columns
+                result.Add(Tuple.Create(col.Name, col.Index))
+            Next
+            Dim displayIndices = From col As DataGridViewColumn In dgv.Columns
+                                 Select col.Name, col.DisplayIndex
+            displayIndices = displayIndices.ToArray
+        End If
+
+        ' Stop
+    End Sub
 End Class
 
 
@@ -528,6 +541,7 @@ Public Class DataBase
     End Function
     Public Function RelationTables(name As String, ParentColumn As DataColumn, ChildColumn As DataColumn) As DataRelation
         Dim Rel As New DataRelation(name, ParentColumn, ChildColumn, createConstraints:=True)
+        Return Rel
     End Function
     Public Function SQL_Insert(InRow As DataRow, TableName As String, Optional InColumns As String() = Nothing, Optional ColumnsFilter As String() = Nothing) As String
         ' sql = "INSERT INTO " & TableName & " (" & pColumns & ")  VALUES(" & pValues2 & ")"

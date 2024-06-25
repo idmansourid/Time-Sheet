@@ -37,10 +37,6 @@ Partial Class frmTimeSheet
         Me.butTsAddRow = New System.Windows.Forms.ToolStripButton()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
-        Me.tlsChideman = New System.Windows.Forms.ToolStrip()
-        Me.tsButRozGhabl2 = New System.Windows.Forms.ToolStripButton()
-        Me.tsTxtTarikh = New System.Windows.Forms.ToolStripTextBox()
-        Me.tsButRozBaad2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStrip5 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStrip4 = New System.Windows.Forms.ToolStrip()
@@ -52,6 +48,12 @@ Partial Class frmTimeSheet
         Me.UDate1 = New dgv.uDate()
         Me.UDgv2 = New dgv.uDgv()
         Me.dgv_FaaliatHa = New dgv.uDgv()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.UDate2 = New dgv.uDate()
+        Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.tabMain.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -65,9 +67,15 @@ Partial Class frmTimeSheet
         Me.ToolStrip2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.TableLayoutPanel4.SuspendLayout()
-        Me.tlsChideman.SuspendLayout()
         Me.ToolStrip5.SuspendLayout()
         Me.ToolStrip4.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        Me.ToolStrip3.SuspendLayout()
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer2.Panel1.SuspendLayout()
+        Me.SplitContainer2.Panel2.SuspendLayout()
+        Me.SplitContainer2.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -76,12 +84,13 @@ Partial Class frmTimeSheet
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.StatusStrip1, 0, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.tabMain, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.Panel1, 0, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 3
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
@@ -104,11 +113,11 @@ Partial Class frmTimeSheet
         Me.tabMain.Controls.Add(Me.TabPage4)
         Me.tabMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tabMain.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tabMain.Location = New System.Drawing.Point(0, 20)
+        Me.tabMain.Location = New System.Drawing.Point(0, 36)
         Me.tabMain.Margin = New System.Windows.Forms.Padding(0)
         Me.tabMain.Name = "tabMain"
         Me.tabMain.SelectedIndex = 0
-        Me.tabMain.Size = New System.Drawing.Size(739, 319)
+        Me.tabMain.Size = New System.Drawing.Size(739, 303)
         Me.tabMain.TabIndex = 1
         '
         'TabPage1
@@ -153,7 +162,7 @@ Partial Class frmTimeSheet
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Size = New System.Drawing.Size(731, 293)
+        Me.TabPage2.Size = New System.Drawing.Size(731, 277)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "حضور غیاب"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -161,10 +170,9 @@ Partial Class frmTimeSheet
         'TableLayoutPanel3
         '
         Me.TableLayoutPanel3.ColumnCount = 3
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 217.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 216.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.42023!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.57977!))
-        Me.TableLayoutPanel3.Controls.Add(Me.Button1, 2, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.SplitContainer1, 0, 2)
         Me.TableLayoutPanel3.Controls.Add(Me.UDate1, 0, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.ToolStrip2, 0, 1)
@@ -173,18 +181,17 @@ Partial Class frmTimeSheet
         Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
         Me.TableLayoutPanel3.RowCount = 3
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 188.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 184.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(731, 293)
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(731, 277)
         Me.TableLayoutPanel3.TabIndex = 0
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(509, 3)
+        Me.Button1.Location = New System.Drawing.Point(9, 8)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(81, 27)
+        Me.Button1.Size = New System.Drawing.Size(81, 19)
         Me.Button1.TabIndex = 0
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
@@ -203,7 +210,7 @@ Partial Class frmTimeSheet
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.dgv_qHozorGhiab)
-        Me.SplitContainer1.Size = New System.Drawing.Size(725, 77)
+        Me.SplitContainer1.Size = New System.Drawing.Size(725, 61)
         Me.SplitContainer1.SplitterDistance = 241
         Me.SplitContainer1.TabIndex = 5
         '
@@ -211,20 +218,19 @@ Partial Class frmTimeSheet
         '
         Me.TableLayoutPanel3.SetColumnSpan(Me.ToolStrip2, 2)
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.butTsAddRow})
-        Me.ToolStrip2.Location = New System.Drawing.Point(0, 188)
+        Me.ToolStrip2.Location = New System.Drawing.Point(0, 184)
         Me.ToolStrip2.Name = "ToolStrip2"
-        Me.ToolStrip2.Size = New System.Drawing.Size(506, 22)
+        Me.ToolStrip2.Size = New System.Drawing.Size(506, 25)
         Me.ToolStrip2.TabIndex = 6
         Me.ToolStrip2.Text = "ToolStrip2"
         '
         'butTsAddRow
         '
-        Me.butTsAddRow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.butTsAddRow.Image = Global.Time_Sheet.My.Resources.Resources.AddRow
         Me.butTsAddRow.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.butTsAddRow.Name = "butTsAddRow"
-        Me.butTsAddRow.Size = New System.Drawing.Size(23, 19)
-        Me.butTsAddRow.Text = "ToolStripButton1"
+        Me.butTsAddRow.Size = New System.Drawing.Size(46, 22)
+        Me.butTsAddRow.Text = "ثبت"
         '
         'TabPage3
         '
@@ -232,75 +238,39 @@ Partial Class frmTimeSheet
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(731, 293)
+        Me.TabPage3.Size = New System.Drawing.Size(731, 277)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "چیدمان افراد"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
         'TableLayoutPanel4
         '
-        Me.TableLayoutPanel4.ColumnCount = 3
-        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3.0!))
-        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel4.Controls.Add(Me.UDgv2, 2, 2)
-        Me.TableLayoutPanel4.Controls.Add(Me.tlsChideman, 0, 0)
-        Me.TableLayoutPanel4.Controls.Add(Me.dgv_FaaliatHa, 0, 2)
-        Me.TableLayoutPanel4.Controls.Add(Me.ToolStrip5, 2, 1)
-        Me.TableLayoutPanel4.Controls.Add(Me.ToolStrip4, 0, 1)
+        Me.TableLayoutPanel4.ColumnCount = 2
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 216.0!))
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel4.Controls.Add(Me.SplitContainer2, 0, 2)
+        Me.TableLayoutPanel4.Controls.Add(Me.ToolStrip3, 0, 1)
+        Me.TableLayoutPanel4.Controls.Add(Me.UDate2, 0, 0)
+        Me.TableLayoutPanel4.Controls.Add(Me.Panel2, 1, 0)
         Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel4.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
-        Me.TableLayoutPanel4.RowCount = 4
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.TableLayoutPanel4.RowCount = 3
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 184.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(731, 293)
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(731, 277)
         Me.TableLayoutPanel4.TabIndex = 0
-        '
-        'tlsChideman
-        '
-        Me.TableLayoutPanel4.SetColumnSpan(Me.tlsChideman, 3)
-        Me.tlsChideman.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsButRozGhabl2, Me.tsTxtTarikh, Me.tsButRozBaad2})
-        Me.tlsChideman.Location = New System.Drawing.Point(0, 0)
-        Me.tlsChideman.Name = "tlsChideman"
-        Me.tlsChideman.Size = New System.Drawing.Size(731, 24)
-        Me.tlsChideman.TabIndex = 0
-        Me.tlsChideman.Text = "ToolStrip3"
-        '
-        'tsButRozGhabl2
-        '
-        Me.tsButRozGhabl2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsButRozGhabl2.Image = Global.Time_Sheet.My.Resources.Resources.rozGhabl
-        Me.tsButRozGhabl2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsButRozGhabl2.Name = "tsButRozGhabl2"
-        Me.tsButRozGhabl2.Size = New System.Drawing.Size(23, 21)
-        Me.tsButRozGhabl2.Text = "ToolStripButton2"
-        '
-        'tsTxtTarikh
-        '
-        Me.tsTxtTarikh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.tsTxtTarikh.Name = "tsTxtTarikh"
-        Me.tsTxtTarikh.Size = New System.Drawing.Size(100, 24)
-        '
-        'tsButRozBaad2
-        '
-        Me.tsButRozBaad2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsButRozBaad2.Image = Global.Time_Sheet.My.Resources.Resources.RozBaad
-        Me.tsButRozBaad2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsButRozBaad2.Name = "tsButRozBaad2"
-        Me.tsButRozBaad2.Size = New System.Drawing.Size(23, 21)
-        Me.tsButRozBaad2.Text = "Roz Baad"
         '
         'ToolStrip5
         '
+        Me.ToolStrip5.Dock = System.Windows.Forms.DockStyle.None
         Me.ToolStrip5.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip5.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel2})
-        Me.ToolStrip5.Location = New System.Drawing.Point(367, 24)
+        Me.ToolStrip5.Location = New System.Drawing.Point(222, 20)
         Me.ToolStrip5.Name = "ToolStrip5"
         Me.ToolStrip5.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ToolStrip5.Size = New System.Drawing.Size(364, 24)
+        Me.ToolStrip5.Size = New System.Drawing.Size(45, 25)
         Me.ToolStrip5.TabIndex = 4
         Me.ToolStrip5.Text = "ToolStrip5"
         '
@@ -312,12 +282,13 @@ Partial Class frmTimeSheet
         '
         'ToolStrip4
         '
+        Me.ToolStrip4.Dock = System.Windows.Forms.DockStyle.None
         Me.ToolStrip4.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1})
-        Me.ToolStrip4.Location = New System.Drawing.Point(0, 24)
+        Me.ToolStrip4.Location = New System.Drawing.Point(145, 20)
         Me.ToolStrip4.Name = "ToolStrip4"
         Me.ToolStrip4.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ToolStrip4.Size = New System.Drawing.Size(364, 24)
+        Me.ToolStrip4.Size = New System.Drawing.Size(59, 25)
         Me.ToolStrip4.TabIndex = 3
         Me.ToolStrip4.Text = "ToolStrip4"
         '
@@ -355,7 +326,7 @@ Partial Class frmTimeSheet
         Me.dgv_SelPersenel.Margin = New System.Windows.Forms.Padding(0, 0, 3, 0)
         Me.dgv_SelPersenel.Name = "dgv_SelPersenel"
         Me.dgv_SelPersenel.ShowHelper = False
-        Me.dgv_SelPersenel.Size = New System.Drawing.Size(241, 77)
+        Me.dgv_SelPersenel.Size = New System.Drawing.Size(241, 61)
         Me.dgv_SelPersenel.TabIndex = 0
         '
         'dgv_qHozorGhiab
@@ -366,7 +337,7 @@ Partial Class frmTimeSheet
         Me.dgv_qHozorGhiab.Margin = New System.Windows.Forms.Padding(3, 0, 0, 0)
         Me.dgv_qHozorGhiab.Name = "dgv_qHozorGhiab"
         Me.dgv_qHozorGhiab.ShowHelper = False
-        Me.dgv_qHozorGhiab.Size = New System.Drawing.Size(480, 77)
+        Me.dgv_qHozorGhiab.Size = New System.Drawing.Size(480, 61)
         Me.dgv_qHozorGhiab.TabIndex = 2
         '
         'UDate1
@@ -375,31 +346,97 @@ Partial Class frmTimeSheet
         Me.UDate1.Location = New System.Drawing.Point(0, 0)
         Me.UDate1.Margin = New System.Windows.Forms.Padding(0)
         Me.UDate1.Name = "UDate1"
-        Me.UDate1.Size = New System.Drawing.Size(217, 188)
+        Me.UDate1.Size = New System.Drawing.Size(216, 184)
         Me.UDate1.TabIndex = 3
-        Me.UDate1.textDate = "03-04-02"
+        Me.UDate1.textDate = "03-04-03"
         '
         'UDgv2
         '
         Me.UDgv2.DataTable = Nothing
         Me.UDgv2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.UDgv2.Location = New System.Drawing.Point(367, 48)
+        Me.UDgv2.Location = New System.Drawing.Point(0, 0)
         Me.UDgv2.Margin = New System.Windows.Forms.Padding(0)
         Me.UDgv2.Name = "UDgv2"
         Me.UDgv2.ShowHelper = False
-        Me.UDgv2.Size = New System.Drawing.Size(364, 220)
+        Me.UDgv2.Size = New System.Drawing.Size(480, 61)
         Me.UDgv2.TabIndex = 2
         '
         'dgv_FaaliatHa
         '
         Me.dgv_FaaliatHa.DataTable = Nothing
         Me.dgv_FaaliatHa.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgv_FaaliatHa.Location = New System.Drawing.Point(0, 48)
+        Me.dgv_FaaliatHa.Location = New System.Drawing.Point(0, 0)
         Me.dgv_FaaliatHa.Margin = New System.Windows.Forms.Padding(0)
         Me.dgv_FaaliatHa.Name = "dgv_FaaliatHa"
         Me.dgv_FaaliatHa.ShowHelper = True
-        Me.dgv_FaaliatHa.Size = New System.Drawing.Size(364, 220)
+        Me.dgv_FaaliatHa.Size = New System.Drawing.Size(241, 61)
         Me.dgv_FaaliatHa.TabIndex = 1
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.Button1)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel1.Location = New System.Drawing.Point(3, 3)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(733, 30)
+        Me.Panel1.TabIndex = 2
+        '
+        'UDate2
+        '
+        Me.UDate2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.UDate2.Location = New System.Drawing.Point(0, 0)
+        Me.UDate2.Margin = New System.Windows.Forms.Padding(0)
+        Me.UDate2.Name = "UDate2"
+        Me.UDate2.Size = New System.Drawing.Size(216, 184)
+        Me.UDate2.TabIndex = 4
+        Me.UDate2.textDate = "03-04-03"
+        '
+        'ToolStrip3
+        '
+        Me.TableLayoutPanel4.SetColumnSpan(Me.ToolStrip3, 2)
+        Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1})
+        Me.ToolStrip3.Location = New System.Drawing.Point(0, 184)
+        Me.ToolStrip3.Name = "ToolStrip3"
+        Me.ToolStrip3.Size = New System.Drawing.Size(731, 25)
+        Me.ToolStrip3.TabIndex = 7
+        Me.ToolStrip3.Text = "ToolStrip3"
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = Global.Time_Sheet.My.Resources.Resources.AddRow
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton1.Text = "ToolStripButton1"
+        '
+        'SplitContainer2
+        '
+        Me.TableLayoutPanel4.SetColumnSpan(Me.SplitContainer2, 3)
+        Me.SplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer2.Location = New System.Drawing.Point(3, 213)
+        Me.SplitContainer2.Name = "SplitContainer2"
+        '
+        'SplitContainer2.Panel1
+        '
+        Me.SplitContainer2.Panel1.Controls.Add(Me.dgv_FaaliatHa)
+        '
+        'SplitContainer2.Panel2
+        '
+        Me.SplitContainer2.Panel2.Controls.Add(Me.UDgv2)
+        Me.SplitContainer2.Size = New System.Drawing.Size(725, 61)
+        Me.SplitContainer2.SplitterDistance = 241
+        Me.SplitContainer2.TabIndex = 8
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.ToolStrip5)
+        Me.Panel2.Controls.Add(Me.ToolStrip4)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(219, 3)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(509, 178)
+        Me.Panel2.TabIndex = 9
         '
         'frmTimeSheet
         '
@@ -427,12 +464,19 @@ Partial Class frmTimeSheet
         Me.TabPage3.ResumeLayout(False)
         Me.TableLayoutPanel4.ResumeLayout(False)
         Me.TableLayoutPanel4.PerformLayout()
-        Me.tlsChideman.ResumeLayout(False)
-        Me.tlsChideman.PerformLayout()
         Me.ToolStrip5.ResumeLayout(False)
         Me.ToolStrip5.PerformLayout()
         Me.ToolStrip4.ResumeLayout(False)
         Me.ToolStrip4.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.ToolStrip3.ResumeLayout(False)
+        Me.ToolStrip3.PerformLayout()
+        Me.SplitContainer2.Panel1.ResumeLayout(False)
+        Me.SplitContainer2.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer2.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -451,19 +495,21 @@ Partial Class frmTimeSheet
     Friend WithEvents TabPage3 As TabPage
     Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
     Friend WithEvents UDgv2 As dgv.uDgv
-    Friend WithEvents tlsChideman As ToolStrip
     Friend WithEvents dgv_FaaliatHa As dgv.uDgv
     Friend WithEvents ToolStrip4 As ToolStrip
     Friend WithEvents ToolStripLabel1 As ToolStripLabel
     Friend WithEvents ToolStrip5 As ToolStrip
     Friend WithEvents ToolStripLabel2 As ToolStripLabel
-    Friend WithEvents tsButRozGhabl2 As ToolStripButton
-    Friend WithEvents tsTxtTarikh As ToolStripTextBox
-    Friend WithEvents tsButRozBaad2 As ToolStripButton
     Friend WithEvents UDate1 As dgv.uDate
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents ToolStrip2 As ToolStrip
     Friend WithEvents butTsAddRow As ToolStripButton
     Friend WithEvents TabPage4 As TabPage
     Friend WithEvents Button1 As Button
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents ToolStrip3 As ToolStrip
+    Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents UDate2 As dgv.uDate
+    Friend WithEvents SplitContainer2 As SplitContainer
+    Friend WithEvents Panel2 As Panel
 End Class
